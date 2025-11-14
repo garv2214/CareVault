@@ -1,0 +1,76 @@
+# ------------------------------------------
+# 1️⃣ CREATE MAIN PROJECT FOLDER
+# ------------------------------------------
+mkdir decentralized-health-records
+cd decentralized-health-records
+
+# ------------------------------------------
+# 2️⃣ CREATE BACKEND (Node.js + Express)
+# ------------------------------------------
+mkdir backend
+cd backend
+
+npm init -y
+npm install express cors body-parser dotenv
+
+# Create backend entry file
+touch index.js
+
+# Go back to main project
+cd ..
+
+# ------------------------------------------
+# 3️⃣ CREATE FRONTEND (React)
+# ------------------------------------------
+npx create-react-app frontend
+
+# ------------------------------------------
+# 4️⃣ CREATE AI SERVICE (Python Flask)
+# ------------------------------------------
+mkdir ai
+cd ai
+
+# Create Python files
+touch ai_server.py
+touch requirements.txt
+
+# Go back to main project
+cd ..
+
+# ------------------------------------------
+# 5️⃣ CREATE BLOCKCHAIN (Solidity + Hardhat)
+# ------------------------------------------
+mkdir blockchain
+cd blockchain
+
+npm init -y
+npm install hardhat
+
+# Initialize Hardhat
+npx hardhat # choose "Create a JavaScript project"
+
+# Create contracts folder if missing
+mkdir -p contracts scripts
+
+# Go back to project root
+cd ..
+
+# ------------------------------------------
+# 6️⃣ CREATE README + GITIGNORE
+# ------------------------------------------
+touch README.md
+touch .gitignore
+
+# Add recommended ignore rules
+echo "node_modules/" >> .gitignore
+echo ".env" >> .gitignore
+echo "__pycache__/" >> .gitignore
+echo "venv/" >> .gitignore
+echo "*.log" >> .gitignore
+echo "build/" >> .gitignore
+echo "dist/" >> .gitignore
+
+# ------------------------------------------
+# 7️⃣ OPEN PROJECT IN VS CODE
+# ------------------------------------------
+code .
