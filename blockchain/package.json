@@ -1,16 +1,17 @@
 {
-  "name": "blockchain",
+  "name": "carevault-blockchain",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "devDependencies": {
+    "hardhat": "^3.0.14",
+    "@nomiclabs/hardhat-ethers": "^2.2.0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
-    "hardhat": "^3.0.14"
+    "ethers": "^6.0.0"
+  },
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "node": "hardhat node",
+    "deploy": "node scripts/deploy.js"
   }
 }
