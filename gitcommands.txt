@@ -1,0 +1,15 @@
+Clone the Repository (FIRST TIME ONLY)
+git clone https://github.com/garv2214/CareVault.git
+cd CareVault
+
+Always Pull Latest Code Before Starting Work
+git pull origin main
+
+After Making Changes → Add Files
+git add .
+
+Commit Your Work
+git commit -m "Describe what you did"
+
+Push Your Branch to GitHub
+git push origin feature-branch-name
