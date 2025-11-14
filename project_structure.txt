@@ -1,0 +1,23 @@
+decentralized-health-records/
+│
+├── backend/
+│   ├── index.js
+│   ├── package.json
+│   └── node_modules/
+│
+├── frontend/
+│   ├── src/
+│   └── package.json
+│
+├── ai/
+│   ├── ai_server.py
+│   ├── requirements.txt
+│
+├── blockchain/
+│   ├── contracts/
+│   ├── scripts/
+│   ├── hardhat.config.js
+│   └── package.json
+│
+├── .gitignore
+└── README.md
