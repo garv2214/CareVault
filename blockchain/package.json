@@ -2,11 +2,11 @@
   "name": "carevault-blockchain",
   "version": "1.0.0",
   "devDependencies": {
-    "hardhat": "^3.0.14",
-    "@nomiclabs/hardhat-ethers": "^2.2.0"
+    "hardhat": "^2.22.4",
+    "@nomiclabs/hardhat-ethers": "^2.2.3"
   },
   "dependencies": {
-    "ethers": "^6.0.0"
+    "ethers": "^5.7.2"
   },
   "scripts": {
     "compile": "hardhat compile",
