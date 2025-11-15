@@ -11,10 +11,15 @@ def load_synthetic(path):
     return df
 
 def prepare_X_y(df):
-    # Expect df contains FEATURES + 'risk' (0/1)
+    FEATURES = ['age', 'heart_rate', 'systolic_bp', 'diastolic_bp', 'blood_sugar']
     X = df[FEATURES].values
-    y = df["risk"].values
+    
+    # convert risk to numeric
+    df['risk'] = df['risk'].map({'low': 0, 'medium': 1, 'high': 2})
+    
+    y = df['risk'].values
     return X, y
+
 
 def split_and_scale(X, y, test_size=0.2, random_state=42):
     X_train, X_test, y_train, y_test = train_test_split(
