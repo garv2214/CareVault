@@ -14,7 +14,7 @@ DATA_PATH = os.path.join(BASE_DIR, "data", "medical_dataset.csv")
 df = pd.read_csv(DATA_PATH)
 
 print("Data loaded successfully!")
-print(df.head())
+print("Total rows:",len(df))
 
 # -----------------------------
 # 2. Convert risk → numeric
