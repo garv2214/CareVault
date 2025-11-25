@@ -1,88 +1,84 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
+import numpy as np
+from sklearn.preprocessing import StandardScaler, LabelEncoder, MultiLabelBinarizer
 from sklearn.ensemble import RandomForestClassifier
-import pickle
+import joblib
 import os
 
-# -----------------------------
-# 1. Load the Dataset
-# -----------------------------
-BASE_DIR = os.path.dirname(__file__)   # /ai/
-DATA_PATH = os.path.join(BASE_DIR, "data", "medical_dataset.csv")
+DATA_PATH = "health_data.csv"
 
+print("Loading dataset...")
 df = pd.read_csv(DATA_PATH)
+print(f"Total rows loaded: {len(df)}")
 
-print("Data loaded successfully!")
-print("Total rows:",len(df))
+# ---------------------------
+# CLEAN & PREPROCESS
+# ---------------------------
 
-# -----------------------------
-# 2. Convert risk → numeric
-# -----------------------------
-label_map = {
-    "low": 0,
-    "medium": 1,
-    "high": 2
-}
+# Convert symptoms column (string) → list
+df["symptoms"] = df["symptoms"].apply(lambda x: [s.strip() for s in x.split(",")])
 
-df["risk"] = df["risk"].str.lower().map(label_map)
+# Multi-hot encode symptoms
+mlb = MultiLabelBinarizer()
+symptom_features = mlb.fit_transform(df["symptoms"])
+symptom_df = pd.DataFrame(symptom_features, columns=mlb.classes_)
 
-# Check conversion
-print("\nConverted risk values:", df["risk"].unique())
+# Encode diagnosis
+diagnosis_encoder = LabelEncoder()
+df["diagnosis_encoded"] = diagnosis_encoder.fit_transform(df["diagnosis"])
 
-# -----------------------------
-# 3. Select features for training
-# -----------------------------
-required_features = ["age", "heart_rate", "systolic_bp", "diastolic_bp", "blood_sugar"]
+# Encode risk
+risk_encoder = LabelEncoder()
+df["risk_encoded"] = risk_encoder.fit_transform(df["risk"])
 
-missing_cols = [c for c in required_features if c not in df.columns]
-if missing_cols:
-    raise Exception(f"Missing columns in dataset: {missing_cols}")
+# Save encoders
+os.makedirs("models", exist_ok=True)
+joblib.dump(mlb, "models/symptom_encoder.pkl")
+joblib.dump(diagnosis_encoder, "models/diagnosis_encoder.pkl")
+joblib.dump(risk_encoder, "models/risk_encoder.pkl")
 
-X = df[required_features]
-y = df["risk"]
+print("Encoders saved!")
 
-# -----------------------------
-# 4. Train/Test Split
-# -----------------------------
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
-)
+# ---------------------------
+# BUILD FEATURE SET
+# ---------------------------
 
-# -----------------------------
-# 5. Normalize the data
-# -----------------------------
+numeric_features = df[[
+    "age",
+    "systolic_bp",
+    "diastolic_bp",
+    "heart_rate",
+    "temperature",
+    "blood_sugar",
+    "diagnosis_encoded"
+]]
+
+full_X = pd.concat([numeric_features, symptom_df], axis=1)
+y = df["risk_encoded"]
+
+# Scale numeric features only
 scaler = StandardScaler()
-X_train_scaled = scaler.fit_transform(X_train)
-X_test_scaled = scaler.transform(X_test)
+numeric_scaled = scaler.fit_transform(numeric_features)
 
-# -----------------------------
-# 6. Train the Model
-# -----------------------------
-model = RandomForestClassifier(
-    n_estimators=200,
-    random_state=42
-)
+# Replace original numeric with scaled version
+full_X_scaled = np.hstack([numeric_scaled, symptom_df.values])
 
-model.fit(X_train_scaled, y_train)
+# Save scaler
+joblib.dump(scaler, "models/scaler.pkl")
 
-print("Model trained successfully!")
+# ---------------------------
+# TRAIN MODEL
+# ---------------------------
 
-# -----------------------------
-# 7. Create folder for saving model
-# -----------------------------
-if not os.path.exists("models"):
-    os.makedirs("models")
+model = RandomForestClassifier(n_estimators=300, random_state=42)
+model.fit(full_X_scaled, y)
 
-# -----------------------------
-# 8. Save the model + scaler
-# -----------------------------
-with open("models/risk_model.pkl", "wb") as f:
-    pickle.dump(model, f)
+joblib.dump(model, "models/risk_model.pkl")
 
-with open("models/scaler.pkl", "wb") as f:
-    pickle.dump(scaler, f)
-
-print("\nSaved:")
+print("\nMODEL TRAINED SUCCESSFULLY!")
+print("Saved:")
 print("models/risk_model.pkl")
 print("models/scaler.pkl")
+print("models/symptom_encoder.pkl")
+print("models/diagnosis_encoder.pkl")
+print("models/risk_encoder.pkl")
