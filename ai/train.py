@@ -5,7 +5,7 @@ from sklearn.ensemble import RandomForestClassifier
 import joblib
 import os
 
-DATA_PATH = "health_data.csv"
+DATA_PATH = "/Users/garvsharma/decentralized-health-records/ai/data/synthetic_records.csv"
 
 print("Loading dataset...")
 df = pd.read_csv(DATA_PATH)
