@@ -21,7 +21,7 @@ exports.addRecord = async (req, res) => {
     const encrypted = encrypt(recordData);
 
     // 2) upload to IPFS
-    ipfsClient.init();
+    await ipfsClient.init();
     const ipfsHash = await ipfsClient.uploadJSON({
       patientId,
       payload: encrypted,
