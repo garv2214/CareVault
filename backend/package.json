@@ -17,6 +17,6 @@
     "dotenv": "^17.2.3",
     "ethers": "^5.8.0",
     "express": "^5.1.0",
-    "ipfs-http-client": "^60.0.1"
+    "ipfs-http-client": "^56.0.5"
   }
 }

@@ -6,8 +6,9 @@
       "contentHash": "90e1ca25ef53404fe15aaae632743e23",
       "sourceName": "contracts/HealthRecord.sol",
       "solcConfig": {
-        "version": "0.8.17",
+        "version": "0.8.24",
         "settings": {
+          "evmVersion": "paris",
           "optimizer": {
             "enabled": false,
             "runs": 200

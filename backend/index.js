@@ -36,7 +36,7 @@ async function start() {
     }
 
     try {
-      ipfsClient.init();
+      await ipfsClient.init();
     } catch (e) {
       console.warn(
         "⚠️ Warning: IPFS client init failed (backend still starts):",
