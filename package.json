@@ -9,7 +9,11 @@
     "start:backend": "cd backend && node index.js",
     "start:frontend": "cd frontend && npm start",
     "install:all": "cd backend && npm install && cd ../frontend && npm install && cd ../blockchain && npm install",
-    "setup:ai": "cd ai && python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt"
+    "setup:ai": "cd ai && python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt",
+    "generate:records": "node backend/scripts/generateRecords.js",
+    "generate:records:10": "node backend/scripts/generateRecords.js 10",
+    "generate:records:50": "node backend/scripts/generateRecords.js 50",
+    "generate:records:100": "node backend/scripts/generateRecords.js 100"
   },
   "keywords": [
     "blockchain",

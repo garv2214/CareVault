@@ -94,13 +94,69 @@ export default function PatientDashboard({ wallet }) {
     }
   }
 
+  async function generateTestRecords(count = 50) {
+    if (!window.confirm(`Generate ${count} test records automatically? This may take a minute.`)) {
+      return;
+    }
+
+    setLoading(true);
+    let success = 0;
+    let failed = 0;
+
+    for (let i = 0; i < count; i++) {
+      const patientId = `patient-${String(i + 1).padStart(3, '0')}`;
+      
+      const recordData = {
+        age: Math.floor(Math.random() * 60) + 20,
+        systolic_bp: Math.floor(Math.random() * 60) + 100,
+        diastolic_bp: Math.floor(Math.random() * 30) + 60,
+        heart_rate: Math.floor(Math.random() * 50) + 60,
+        temperature: parseFloat((Math.random() * 3 + 97).toFixed(1)),
+        blood_sugar: Math.floor(Math.random() * 100) + 80,
+        symptoms: ["fever, cough", "fatigue", "headache", "nausea", "chest pain"][Math.floor(Math.random() * 5)],
+        diagnosis: ["Common cold", "Flu", "Hypertension", "Diabetes", "Arthritis"][Math.floor(Math.random() * 5)],
+        notes: `Auto-generated test record #${i + 1}`,
+        timestamp: new Date().toISOString(),
+      };
+
+      try {
+        const response = await api.addRecord(patientId, recordData);
+        if (response.success) {
+          success++;
+        } else {
+          failed++;
+        }
+      } catch (err) {
+        failed++;
+        console.error(`Failed to add record ${i + 1}:`, err);
+      }
+
+      // Small delay to avoid overwhelming
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+
+    setLoading(false);
+    alert(`✅ Generated ${success} records successfully!\n${failed > 0 ? `⚠️ ${failed} failed.` : ''}\n\nRefresh to see them!`);
+    loadRecords();
+  }
+
   return (
     <div className="dashboard patient-dashboard">
       <div className="dashboard-header">
         <h2>Patient Dashboard</h2>
-        <button onClick={() => setShowForm(!showForm)} className="btn-primary">
-          {showForm ? "Cancel" : "Add New Record"}
-        </button>
+        <div style={{ display: "flex", gap: "1rem" }}>
+          <button 
+            onClick={() => generateTestRecords(50)} 
+            className="btn-primary"
+            disabled={loading}
+            style={{ background: "#28a745" }}
+          >
+            {loading ? "Generating..." : "Generate 50 Records"}
+          </button>
+          <button onClick={() => setShowForm(!showForm)} className="btn-primary">
+            {showForm ? "Cancel" : "Add New Record"}
+          </button>
+        </div>
       </div>
 
       {showForm && (
