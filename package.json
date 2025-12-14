@@ -1,0 +1,24 @@
+{
+  "name": "decentralized-health-records",
+  "version": "1.0.0",
+  "description": "Decentralized Health Records & Emergency Access Application",
+  "scripts": {
+    "start:blockchain": "cd blockchain && npx hardhat node",
+    "deploy:local": "cd blockchain && npx hardhat run scripts/deploy.js --network localhost",
+    "start:ai": "cd ai && source venv/bin/activate && python ai_server.py",
+    "start:backend": "cd backend && node index.js",
+    "start:frontend": "cd frontend && npm start",
+    "install:all": "cd backend && npm install && cd ../frontend && npm install && cd ../blockchain && npm install",
+    "setup:ai": "cd ai && python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt"
+  },
+  "keywords": [
+    "blockchain",
+    "healthcare",
+    "ipfs",
+    "ai",
+    "ethereum"
+  ],
+  "author": "",
+  "license": "MIT"
+}
+
