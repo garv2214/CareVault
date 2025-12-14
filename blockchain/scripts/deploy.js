@@ -12,7 +12,7 @@ async function main() {
   await contract.waitForDeployment();
   
   const address = contract.target || contract.address;
-  
+
   console.log("\n✅ HealthRecord deployed successfully!");
   console.log("📍 Contract address:", address);
   console.log("\n📋 Next steps:");
