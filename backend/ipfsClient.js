@@ -41,17 +41,17 @@ async function init() {
   const projectSecret = process.env.IPFS_PROJECT_SECRET || "";
 
   try {
-    if (projectId && projectSecret) {
-      const auth = "Basic " + Buffer.from(projectId + ":" + projectSecret).toString("base64");
-      client = create({
-        host: "ipfs.infura.io",
-        port: 5001,
-        protocol: "https",
-        headers: {
-          authorization: auth,
-        },
-      });
-    } else {
+  if (projectId && projectSecret) {
+    const auth = "Basic " + Buffer.from(projectId + ":" + projectSecret).toString("base64");
+    client = create({
+      host: "ipfs.infura.io",
+      port: 5001,
+      protocol: "https",
+      headers: {
+        authorization: auth,
+      },
+    });
+  } else {
       // Try local IPFS node first, then fallback to public gateway
       try {
         client = create({ url: "http://127.0.0.1:5001" });
