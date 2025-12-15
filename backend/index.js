@@ -17,15 +17,20 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Routes
-app.get("/", (req, res) => res.send("CareVault Backend Running 🚀"));
+app.get("/", (req, res) => {
+  console.log("GET / HIT");
+  res.send("CareVault Backend Running 🚀");
+});
+
 app.use("/api/health", healthRoutes);
 app.use("/api/ai", aiRoutes);      // <-- moved **after app is defined**
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 7000;
 
 async function start() {
   try {
-    // Initialize blockchain client and IPFS (non-blocking)
+    // Initialize blockchain client and IPFS (non-blocking)nano .env
+
     try {
       await blockchainClient.init();
     } catch (e) {
