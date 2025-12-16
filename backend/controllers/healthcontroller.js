@@ -10,6 +10,7 @@ exports.getAllRecords = (req, res) => {
   res.json({ success: true, data: recordsDB });
 };
 
+
 exports.addRecord = async (req, res) => {
   try {
     const { patientId, recordData } = req.body;
@@ -20,7 +21,7 @@ exports.addRecord = async (req, res) => {
     // 1) encrypt the record
     const encrypted = encrypt(recordData);
 
-    // 2) upload to IPFS
+    // 2) upload to IPFS (or fallback to local storage)
     await ipfsClient.init();
     const ipfsHash = await ipfsClient.uploadJSON({
       patientId,
@@ -32,15 +33,22 @@ exports.addRecord = async (req, res) => {
     const localEntry = { patientId, ipfsHash, uploadedAt: new Date() };
     recordsDB.push(localEntry);
 
-    // 4) add metadata on-chain
-    await blockchainClient.init();
-    const receipt = await blockchainClient.addHealthRecord(patientId, ipfsHash);
+    // 4) try to add metadata on-chain (optional for local development)
+    let txHash = null;
+    try {
+      await blockchainClient.init();
+      const receipt = await blockchainClient.addHealthRecord(patientId, ipfsHash);
+      txHash = receipt.transactionHash || null;
+    } catch (blockchainError) {
+      console.warn("⚠️ Blockchain operation failed (continuing without blockchain):", blockchainError.message);
+    }
 
     return res.status(201).json({
       success: true,
-      message: "Record stored on IPFS and on-chain",
+      message: txHash ? "Record stored on IPFS and on-chain" : "Record stored locally (blockchain unavailable)",
       ipfsHash,
-      txHash: receipt.transactionHash || receipt.transactionHash || null,
+      txHash: txHash,
+      storage: ipfsHash.startsWith('local-') ? 'local' : 'ipfs'
     });
   } catch (err) {
     console.error("addRecord error:", err);

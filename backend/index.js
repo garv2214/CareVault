@@ -1,4 +1,5 @@
 // backend/index.js
+
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -12,20 +13,52 @@ const aiRoutes = require("./routes/aiRoutes");
 // Initialize express BEFORE using routes
 const app = express();
 
+// CORS Configuration for macOS M1 compatibility
+const corsOptions = {
+  origin: process.env.CORS_ORIGIN || ["http://localhost:3000", "http://localhost:3001"],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"]
+};
+
 // Middlewares
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
+
+// Enhanced logging middleware
+app.use((req, res, next) => {
+  const timestamp = new Date().toISOString();
+  console.log(`[${timestamp}] ${req.method} ${req.path} - ${req.ip}`);
+  next();
+});
 
 // Routes
 app.get("/", (req, res) => {
-  console.log("GET / HIT");
-  res.send("CareVault Backend Running 🚀");
+  console.log("GET / HIT - CareVault Backend Running 🚀");
+  res.json({
+    status: "running",
+    message: "CareVault Backend Running 🚀",
+    timestamp: new Date().toISOString(),
+    version: "1.0.0"
+  });
+});
+
+app.get("/health", (req, res) => {
+  res.json({
+    status: "healthy",
+    timestamp: new Date().toISOString(),
+    services: {
+      blockchain: blockchainClient ? "connected" : "disconnected",
+      ipfs: ipfsClient ? "connected" : "disconnected"
+    }
+  });
 });
 
 app.use("/api/health", healthRoutes);
 app.use("/api/ai", aiRoutes);      // <-- moved **after app is defined**
 
-const PORT = process.env.PORT || 7000;
+
+const PORT = process.env.PORT || 7001;
 
 async function start() {
   try {

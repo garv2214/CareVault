@@ -2,9 +2,10 @@
   "name": "decentralized-health-records",
   "version": "1.0.0",
   "description": "Decentralized Health Records & Emergency Access Application",
+
   "scripts": {
-    "start:blockchain": "cd blockchain && npx hardhat node",
-    "deploy:local": "cd blockchain && npx hardhat run scripts/deploy.js --network localhost",
+    "start:blockchain": "cd blockchain && npm run node",
+    "deploy:local": "cd blockchain && npm run deploy",
     "start:ai": "cd ai && source venv/bin/activate && python ai_server.py",
     "start:backend": "cd backend && node index.js",
     "start:frontend": "cd frontend && npm start",

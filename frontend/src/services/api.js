@@ -1,5 +1,6 @@
 // frontend/src/services/api.js
-const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
+
+const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:7000/api";
 
 async function handleResponse(response) {
   if (!response.ok) {
@@ -24,7 +25,8 @@ export const api = {
       return await handleResponse(response);
     } catch (error) {
       console.error("getAllRecords error:", error);
-      throw new Error(`Failed to fetch records: ${error.message}. Make sure backend is running on port 5000.`);
+
+      throw new Error(`Failed to fetch records: ${error.message}. Make sure backend is running on port 7000.`);
     }
   },
 
@@ -39,7 +41,8 @@ export const api = {
     } catch (error) {
       console.error("addRecord error:", error);
       if (error.message.includes("Failed to fetch") || error.message.includes("NetworkError")) {
-        throw new Error("Cannot connect to backend. Please make sure the backend server is running on port 5000.");
+
+        throw new Error("Cannot connect to backend. Please make sure the backend server is running on port 7000.");
       }
       throw error;
     }

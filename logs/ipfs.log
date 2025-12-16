@@ -1,0 +1,39 @@
+Initializing daemon...
+Kubo version: 0.39.0-Homebrew
+Repo version: 18
+System version: arm64/darwin
+Golang version: go1.25.4
+PeerID: 12D3KooWDeFtyL3pzSX6kp4yg26qwXcR6Vco21dNR8JiXFQqeh4t
+Swarm listening on 127.0.0.1:4001 (TCP+UDP)
+Swarm listening on 192.168.1.13:4001 (TCP+UDP)
+Swarm listening on [2401:4900:1c5d:56cb:1853:1b03:9ffa:b8cd]:4001 (TCP+UDP)
+Swarm listening on [2401:4900:1c5d:56cb:3098:1dca:2b5f:19ec]:4001 (TCP+UDP)
+Swarm listening on [::1]:4001 (TCP+UDP)
+Run 'ipfs id' to inspect announced and discovered multiaddrs of this node.
+
+
+ℹ️  Anonymous telemetry will be enabled in 15m0s
+
+Kubo will collect anonymous usage data to help improve the software:
+• What:  Feature usage and configuration (no personal data)
+         Use GOLOG_LOG_LEVEL="telemetry=debug" to inspect collected data
+• When:  First collection in 15m0s, then every 24h
+• How:   HTTP POST to https://telemetry.ipshipyard.dev
+         Anonymous ID: c1a652ea-5417-4ceb-a9c0-2fbc38342d18
+
+No data sent yet. To opt-out before collection starts:
+• Set environment: IPFS_TELEMETRY=off
+• Or run: ipfs config Plugins.Plugins.telemetry.Config.Mode off
+• Then restart daemon
+
+This message is shown only once.
+Learn more: https://github.com/ipfs/kubo/blob/master/docs/telemetry.md
+
+
+RPC API server listening on /ip4/127.0.0.1/tcp/5001
+WebUI: http://127.0.0.1:5001/webui
+Gateway server listening on /ip4/127.0.0.1/tcp/8080
+Daemon is ready
+
+Received interrupt signal, shutting down...
+(Hit ctrl-c again to force-shutdown the daemon.)

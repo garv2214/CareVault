@@ -1,7 +1,8 @@
-flask
-numpy
-pandas
-scikit-learn
-joblib
-python-dotenv
-nltk
+# Updated for Python 3.13.7 and macOS M1 (Apple Silicon) compatibility
+flask==3.0.0
+numpy==1.26.2
+pandas==2.2.0
+scikit-learn==1.4.0
+joblib==1.4.0
+python-dotenv==1.0.1
+nltk==3.9.0

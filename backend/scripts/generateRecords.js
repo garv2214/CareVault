@@ -4,7 +4,9 @@
 const axios = require("axios");
 require("dotenv").config();
 
-const API_URL = process.env.API_URL || "http://localhost:5000/api";
+
+
+const API_URL = process.env.API_URL || "http://localhost:7001/api";
 const NUM_RECORDS = process.argv[2] ? parseInt(process.argv[2]) : 50;
 
 // Generate random health data
@@ -105,23 +107,25 @@ async function generateRecords() {
   console.log(`   Refresh your browser to see them.`);
 }
 
+
 // Check if backend is running
 async function checkBackend() {
   try {
     const response = await axios.get(`${API_URL.replace('/api', '')}/`, { timeout: 3000 });
-    if (response.data && response.data.includes('CareVault')) {
+    if (response.data && response.data.message && response.data.message.includes('CareVault')) {
       console.log('✅ Backend is running and responding\n');
       return true;
     }
     throw new Error('Backend responded but with unexpected data');
   } catch (error) {
     if (error.code === 'ECONNREFUSED' || error.code === 'ETIMEDOUT') {
-      console.error(`\n❌ Cannot connect to backend at http://localhost:5000`);
+
+    console.error(`\n❌ Cannot connect to backend at http://localhost:7001`);
       console.error(`   The backend server is not running or not responding.\n`);
       console.error(`   To start the backend:`);
       console.error(`   1. Open a new terminal`);
       console.error(`   2. Run: cd backend && node index.js`);
-      console.error(`   3. Wait for: "🚀 Backend listening on port 5000"`);
+      console.error(`   3. Wait for: "🚀 Backend listening on port 7001"`);
       console.error(`   4. Then run this script again\n`);
     } else {
       console.error(`\n❌ Error connecting to backend: ${error.message}`);

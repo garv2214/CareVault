@@ -1,0 +1,25 @@
+Initializing blockchain client…
+✅ Blockchain client initialized for: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+📦 IPFS client initialized (local node)
+node:events:486
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::7000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at app.listen (/Users/garvsharma/decentralized-health-records/backend/node_modules/express/lib/application.js:635:24)
+    at start (/Users/garvsharma/decentralized-health-records/backend/index.js:85:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 7000
+}
+
+Node.js v24.6.0

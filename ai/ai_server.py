@@ -6,7 +6,8 @@ import numpy as np
 from utils.preprocessing import FEATURES
 from utils.summarizer import simple_emergency_summary
 
-MODEL_DIR = os.path.join(os.path.dirname(__file__), "model")
+
+MODEL_DIR = os.path.join(os.path.dirname(__file__), "models")
 MODEL_PATH = os.path.join(MODEL_DIR, "risk_model.pkl")
 SCALER_PATH = os.path.join(MODEL_DIR, "scaler.pkl")
 
@@ -79,6 +80,7 @@ def summarize():
     summary = simple_emergency_summary(text)
     return jsonify({"summary": summary})
 
+
 @app.route("/train", methods=["POST"])
 def train_endpoint():
     """
@@ -91,11 +93,8 @@ def train_endpoint():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+
 if __name__ == "__main__":
-    # load punkt if necessary
-    import nltk
-    try:
-        nltk.data.find("tokenizers/punkt")
-    except LookupError:
-        nltk.download("punkt")
-    app.run(port=8000, debug=True)
+    # Start Flask app on all interfaces for Docker/macOS compatibility
+    print("🚀 Starting AI service on port 8000...")
+    app.run(host="0.0.0.0", port=8000, debug=True)
