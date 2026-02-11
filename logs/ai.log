@@ -1,0 +1,14 @@
+ * Serving Flask app 'ai_server'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.1.13:8000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 320-824-905
+127.0.0.1 - - [16/Dec/2025 05:55:51] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [16/Dec/2025 05:56:44] "GET / HTTP/1.1" 200 -
+/opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/multiprocessing/resource_tracker.py:324: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-11089-frhj5i3n'}
+  warnings.warn(
