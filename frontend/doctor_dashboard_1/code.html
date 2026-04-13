@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Care-Vault | Clinical Sanctuary Dashboard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#00174b",
+                    "surface-container": "#eceef0",
+                    "background": "#f7f9fb",
+                    "secondary-fixed": "#89f5e7",
+                    "on-surface": "#191c1e",
+                    "surface-tint": "#0053db",
+                    "tertiary-fixed": "#e1e0ff",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "primary-fixed": "#dbe1ff",
+                    "tertiary": "#4648d4",
+                    "on-secondary-container": "#006f66",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#2d3133",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#e0e3e5",
+                    "secondary-container": "#86f2e4",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#0051d5",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#e6e8ea",
+                    "tertiary-container": "#6063ee",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-background": "#191c1e",
+                    "on-primary-container": "#fefcff",
+                    "on-surface-variant": "#414754",
+                    "tertiary-fixed-dim": "#c0c1ff",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "surface-variant": "#e0e3e5",
+                    "on-tertiary-fixed": "#07006c",
+                    "on-secondary-fixed": "#00201d",
+                    "on-primary": "#ffffff",
+                    "surface-container-low": "#f2f4f6",
+                    "inverse-on-surface": "#eff1f3",
+                    "secondary": "#006a61",
+                    "surface": "#f7f9fb",
+                    "outline-variant": "#c1c6d7",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#6bd8cb",
+                    "inverse-primary": "#b4c5ff",
+                    "surface-bright": "#f7f9fb",
+                    "on-tertiary-fixed-variant": "#2f2ebe",
+                    "outline": "#717786",
+                    "surface-dim": "#d8dadc",
+                    "on-tertiary-container": "#fffbff",
+                    "primary-container": "#316bf3",
+                    "on-secondary-fixed-variant": "#005049"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(24px);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#f7f9fb]/70 dark:bg-slate-900/70 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,81,213,0.06)] flex justify-between items-center px-8 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-700 dark:text-blue-400 text-2xl" data-icon="clinical_notes">clinical_notes</span>
+<h1 class="text-2xl font-black tracking-tighter text-blue-700 dark:text-blue-400 font-headline">Care-Vault</h1>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<nav class="flex gap-6">
+<a class="text-blue-700 dark:text-blue-400 font-bold font-headline transition-all" href="#">Dashboard</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-all font-headline" href="#">History</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-all font-headline" href="#">Network</a>
+</nav>
+<button id="connectWallet" class="bg-gradient-to-br from-primary to-primary-container text-white px-6 py-2.5 rounded-full font-bold shadow-lg hover:shadow-primary/20 transition-all scale-95 active:duration-150" onclick="connectCareVaultWallet()">
+                Connect Wallet
+            </button>
+</div>
+</header>
+<div class="flex pt-20">
+<!-- NavigationDrawer -->
+<aside class="fixed left-0 top-0 h-full flex flex-col p-6 space-y-4 bg-[#f2f4f6] dark:bg-slate-950 h-screen w-72 rounded-r-3xl overflow-hidden z-40">
+<div class="mb-8 mt-16 px-4">
+<div class="flex items-center gap-3">
+<img alt="User Avatar" class="w-10 h-10 rounded-xl bg-white shadow-sm" data-alt="minimalist 3d avatar icon of a professional medical doctor in a white coat with a clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6NXo5rvrRkqvI99b5bK03Ll-vXN_4nro2xrRnWjPfHGVYHz3kubAfgK-CixyRsN9Z0SqP8gGKMs_862X0BZaILa6D-Wa9tvpcVrIrCAS2Q68LvqAaGjsXHW0uMbZMX_Hp-R8WYEoiSgJD4lA4Zjejpp2GMGkcWV4rF2ME_GL5EfubDWG8h-071qKnQcEKR76RdJDugthEkS0K3JhzNpdvNd3PeERwdCbGrMNZev7_KQTtcU4j7vmJaRUIiPyztcIjNaUOUtzw5AA"/>
+<div>
+<p class="font-headline font-bold text-sm text-on-surface">Clinical Sanctuary</p>
+<p class="text-xs text-slate-500 font-mono">0x71C...4f3b</p>
+</div>
+</div>
+</div>
+<nav class="flex flex-col space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-slate-800 text-blue-700 dark:text-blue-300 font-semibold rounded-xl shadow-sm transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="folder_shared">folder_shared</span>
+<span>Health Records</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="lock_open">lock_open</span>
+<span>Access Control</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="emergency">emergency</span>
+<span>Emergency</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 ml-72 p-8 bg-surface">
+<div class="max-w-6xl mx-auto space-y-12">
+<!-- Welcome Section -->
+<header class="mb-12">
+<h2 class="text-4xl font-headline font-extrabold tracking-tight text-on-surface mb-2">Doctor Dashboard</h2>
+<p class="text-on-surface-variant font-medium">Manage clinical access and patient data with blockchain integrity.</p>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Request Access Section (Column 1-5) -->
+<section class="col-span-12 lg:col-span-5 flex flex-col">
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_12px_40px_rgba(0,81,213,0.06)] flex-1 border border-outline-variant/10">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
+<span class="material-symbols-outlined" data-icon="key">key</span>
+</div>
+<h3 class="text-xl font-headline font-bold">Request Access</h3>
+</div>
+<p class="text-sm text-on-surface-variant mb-6">Enter the patient's decentralized identifier (DID) to request encrypted health record access.</p>
+<form class="space-y-4">
+<div class="space-y-1.5">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant px-1">Patient Wallet Address</label>
+<input id="patientInput" class="w-full bg-surface-container-highest border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/40 text-on-surface placeholder-slate-400 transition-all" placeholder="0x..." type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant px-1">Request Purpose</label>
+<select id="purposeSelect" class="w-full bg-surface-container-highest border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/40 text-on-surface appearance-none">
+<option>Diagnostic Review</option>
+<option>Specialist Consultation</option>
+<option>Follow-up Care</option>
+</select>
+</div>
+<button id="submitRequest" class="w-full bg-primary text-white py-4 rounded-xl font-bold mt-4 shadow-lg hover:bg-primary-container transition-colors" type="submit">
+                                    Send Permission Request
+                                </button>
+</form>
+</div>
+</section>
+<!-- Emergency Access Section (Column 6-12) -->
+<section class="col-span-12 lg:col-span-7">
+<div class="bg-error-container/20 p-8 rounded-xl border border-error/10 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-9xl text-error" data-icon="warning">warning</span>
+</div>
+<div class="relative z-10">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-error" data-icon="emergency_home">emergency_home</span>
+<h3 class="text-xl font-headline font-extrabold text-on-error-container">Emergency 'Break Glass' Access</h3>
+</div>
+<div class="bg-white/60 backdrop-blur-md border border-error/20 p-6 rounded-xl mb-6">
+<p class="text-error font-bold text-sm mb-2 uppercase tracking-tighter flex items-center gap-2">
+<span class="material-symbols-outlined text-xs" data-icon="gavel">gavel</span> Critical Protocol Warning
+                                    </p>
+<p class="text-on-error-container text-sm leading-relaxed">
+                                        Activating this protocol grants immediate, temporary access to all patient records without explicit consent. 
+                                        <strong>Every action will be permanently logged on the audit chain</strong> and requires a signed medical justification within 24 hours.
+                                    </p>
+</div>
+<button id="emergencyBtn" class="bg-error text-white px-8 py-4 rounded-xl font-bold flex items-center gap-3 shadow-xl shadow-error/20 hover:bg-red-700 transition-colors">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+                                    Authorize Emergency Access
+                                </button>
+</div>
+</div>
+</section>
+<!-- View Records Section (Full Width) -->
+<section class="col-span-12">
+<div class="bg-surface-container-low rounded-2xl p-8">
+<div class="flex justify-between items-center mb-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-tertiary-container/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+</div>
+<h3 class="text-2xl font-headline font-bold">Accessible Patient Records</h3>
+</div>
+<div class="flex gap-2">
+<span class="bg-blue-100 text-blue-700 text-[10px] font-bold px-3 py-1 rounded-full uppercase">12 Records Available</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full border-separate border-spacing-y-3">
+<thead>
+<tr class="text-left">
+<th class="px-6 pb-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Patient / DID</th>
+<th class="px-6 pb-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Record Type</th>
+<th class="px-6 pb-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Last Updated</th>
+<th class="px-6 pb-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest text-right">Actions</th>
+</tr>
+</thead>
+<tbody id="recordsTable"></tbody>
+<!-- Table Rows with background shifts as per "No-Line Rule" -->
+<tr class="bg-surface-container-lowest group hover:translate-y-[-2px] transition-transform duration-200 shadow-sm">
+<td class="px-6 py-5 rounded-l-xl">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary text-xs font-bold">JD</div>
+<div>
+<p class="font-bold text-sm">John Doe</p>
+<p class="text-[10px] text-slate-400 font-mono">0x4a92...e281</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-xs font-medium">Cardiology Report</span>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">Oct 24, 2024</td>
+<td class="px-6 py-5 rounded-r-xl text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 rounded-lg hover:bg-blue-50 text-blue-600 transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 rounded-lg hover:bg-blue-50 text-blue-600 transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="download">download</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="bg-transparent"> <!-- Spacer row -->
+<td class="h-1" colspan="4"></td>
+</tr>
+<tr class="bg-surface-container-lowest group hover:translate-y-[-2px] transition-transform duration-200 shadow-sm">
+<td class="px-6 py-5 rounded-l-xl">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container text-xs font-bold">AS</div>
+<div>
+<p class="font-bold text-sm">Alice Smith</p>
+<p class="text-[10px] text-slate-400 font-mono">0x81f2...99bc</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-xs font-medium">MRI Scan (Lumbar)</span>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">Oct 21, 2024</td>
+<td class="px-6 py-5 rounded-r-xl text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 rounded-lg hover:bg-blue-50 text-blue-600 transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 rounded-lg hover:bg-blue-50 text-blue-600 transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="download">download</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="bg-transparent"> <!-- Spacer row -->
+<td class="h-1" colspan="4"></td>
+</tr>
+<tr class="bg-surface-container-lowest group hover:translate-y-[-2px] transition-transform duration-200 shadow-sm">
+<td class="px-6 py-5 rounded-l-xl">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed-variant text-xs font-bold">RK</div>
+<div>
+<p class="font-bold text-sm">Robert King</p>
+<p class="text-[10px] text-slate-400 font-mono">0x33e1...12d4</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-xs font-medium">Blood Panel</span>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">Oct 18, 2024</td>
+<td class="px-6 py-5 rounded-r-xl text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 rounded-lg hover:bg-blue-50 text-blue-600 transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 rounded-lg hover:bg-blue-50 text-blue-600 transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="download">download</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="w-full py-12 bg-[#f7f9fb] dark:bg-slate-900 mt-20">
+<div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center">
+<div class="mb-6 md:mb-0">
+<p class="font-headline font-bold text-slate-400 text-lg">Care-Vault</p>
+<p class="font-body text-xs tracking-wide text-slate-400">© 2024 Care-Vault. Secured by Blockchain.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-body text-xs tracking-wide text-slate-400 hover:text-blue-500 transition-colors" href="#">Privacy Protocol</a>
+<a class="font-body text-xs tracking-wide text-slate-400 hover:text-blue-500 transition-colors" href="#">Node Status</a>
+<a class="font-body text-xs tracking-wide text-slate-400 hover:text-blue-500 transition-colors" href="#">Audit Report</a>
+</div>
+</div>
+    <script src="https://cdn.ethers.io/lib/ethers-6.15.0.umd.min.js"></script>
+    <script type="module">
+      import '../js/dashboard.js';
+    </script>
+  </footer>
+</body></html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Care-Vault | Secure Authentication</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#00174b",
+                        "surface-container": "#eceef0",
+                        "background": "#f7f9fb",
+                        "secondary-fixed": "#89f5e7",
+                        "on-surface": "#191c1e",
+                        "surface-tint": "#0053db",
+                        "tertiary-fixed": "#e1e0ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "primary-fixed": "#dbe1ff",
+                        "tertiary": "#4648d4",
+                        "on-secondary-container": "#006f66",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "secondary-container": "#86f2e4",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#0051d5",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#e6e8ea",
+                        "tertiary-container": "#6063ee",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-background": "#191c1e",
+                        "on-primary-container": "#fefcff",
+                        "on-surface-variant": "#414754",
+                        "tertiary-fixed-dim": "#c0c1ff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "surface-variant": "#e0e3e5",
+                        "on-tertiary-fixed": "#07006c",
+                        "on-secondary-fixed": "#00201d",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary": "#006a61",
+                        "surface": "#f7f9fb",
+                        "outline-variant": "#c1c6d7",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#6bd8cb",
+                        "inverse-primary": "#b4c5ff",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary-fixed-variant": "#2f2ebe",
+                        "outline": "#717786",
+                        "surface-dim": "#d8dadc",
+                        "on-tertiary-container": "#fffbff",
+                        "primary-container": "#316bf3",
+                        "on-secondary-fixed-variant": "#005049"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface min-h-screen flex flex-col">
+<header class="fixed top-0 w-full z-50 bg-[#f7f9fb]/70 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,81,213,0.06)] flex justify-between items-center px-8 py-4 max-w-full mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-700 text-3xl" data-icon="clinical_notes">clinical_notes</span>
+<span class="text-2xl font-black tracking-tighter text-blue-700">Care-Vault</span>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-6 py-2.5 rounded-full font-label font-semibold text-sm shadow-sm transition-all hover:surface-tint active:scale-95 duration-150">
+            Connect Wallet
+        </button>
+</header>
+<main class="flex-grow flex items-center justify-center pt-24 pb-12 px-6">
+<div class="relative w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div class="space-y-8 z-10">
+<div class="space-y-4">
+<span class="text-primary font-bold tracking-widest text-xs uppercase">Secure Health Ecosystem</span>
+<h1 class="font-headline text-5xl font-extrabold tracking-tight text-on-surface leading-tight">
+                        Your Clinical <br/> Sanctuary <span class="text-primary">Secured</span>.
+                    </h1>
+<p class="text-on-surface-variant text-lg leading-relaxed max-w-md">
+                        Access your medical records and clinical history through decentralized sovereign identity. Your data, your vault.
+                    </p>
+</div>
+<div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-xl">
+<div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm">
+<img alt="MetaMask" class="w-7 h-7" data-alt="Official MetaMask fox logo icon in vibrant orange and gold colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlh718rrG-FTUfLnRcG5MWTgwNloQS6yIAwchRteUOUiJl1babVhCyHWudGFq-_dJ52eMxOoPfVwNbRuMhvxN-1jgFGzVj8GGYUAeSPQMIs99zMvQ1FmqV0UipIHPhmDNJdUn_q6oPQ5stdUf1surVYpR090nZrIBQ1eoqp-pHjDv6ADv1vi3T3XKsrSGPg0UzRdVBICORev27BQyZvOVrZ77w8VSjMDiif54N6NntOyNQK4fUv5Rxrcd6dbW-abo-kcOgrR_uhsc"/>
+</div>
+<div>
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-tighter">Connected Account</p>
+<p class="font-mono text-sm text-primary font-semibold">0x71C...4f3b</p>
+</div>
+<span class="ml-auto material-symbols-outlined text-secondary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -top-12 -right-12 w-64 h-64 bg-primary-container/10 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-12 -left-12 w-64 h-64 bg-secondary-container/10 rounded-full blur-3xl"></div>
+<div class="glass-panel relative z-10 p-10 rounded-[2rem] shadow-[0_40px_100px_rgba(0,81,213,0.08)] space-y-8">
+<div class="text-center">
+<h2 class="font-headline text-2xl font-bold text-on-surface">Select Your Portal</h2>
+<p class="text-on-surface-variant text-sm mt-1">Choose your identity to continue to your dashboard</p>
+</div>
+<div class="grid grid-cols-1 gap-4">
+<button class="group flex items-center p-6 bg-surface-container-lowest rounded-2xl transition-all hover:translate-x-1 hover:shadow-lg hover:shadow-primary/5 active:scale-95">
+<div class="w-14 h-14 rounded-full bg-blue-50 text-primary flex items-center justify-center transition-colors group-hover:bg-primary group-hover:text-white">
+<span class="material-symbols-outlined text-3xl" data-icon="person">person</span>
+</div>
+<div class="ml-6 text-left">
+<h3 class="font-headline font-bold text-lg text-on-surface">Patient Portal</h3>
+<p class="text-on-surface-variant text-sm">Manage your personal health data</p>
+</div>
+<span class="ml-auto material-symbols-outlined text-outline-variant group-hover:text-primary" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<button class="group flex items-center p-6 bg-surface-container-lowest rounded-2xl transition-all hover:translate-x-1 hover:shadow-lg hover:shadow-primary/5 active:scale-95">
+<div class="w-14 h-14 rounded-full bg-teal-50 text-secondary flex items-center justify-center transition-colors group-hover:bg-secondary group-hover:text-white">
+<span class="material-symbols-outlined text-3xl" data-icon="medical_services">medical_services</span>
+</div>
+<div class="ml-6 text-left">
+<h3 class="font-headline font-bold text-lg text-on-surface">Doctor Access</h3>
+<p class="text-on-surface-variant text-sm">Review clinical trials and records</p>
+</div>
+<span class="ml-auto material-symbols-outlined text-outline-variant group-hover:text-secondary" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<div class="pt-4 flex items-center gap-3 justify-center opacity-60">
+<span class="material-symbols-outlined text-sm" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
+<p class="text-xs font-medium tracking-tight">End-to-End Encrypted via Ethereum Mainnet</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="w-full py-12 bg-[#f7f9fb]">
+<div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center">
+<div class="mb-6 md:mb-0">
+<span class="font-['Manrope'] font-bold text-slate-400">Care-Vault</span>
+<p class="font-['Inter'] text-xs tracking-wide text-slate-400 mt-2">© 2024 Care-Vault. Secured by Blockchain.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-['Inter'] text-xs tracking-wide text-slate-400 hover:text-blue-500 transition-colors" href="#">Privacy Protocol</a>
+<a class="font-['Inter'] text-xs tracking-wide text-slate-400 hover:text-blue-500 transition-colors" href="#">Node Status</a>
+<a class="font-['Inter'] text-xs tracking-wide text-slate-400 hover:text-blue-500 transition-colors" href="#">Audit Report</a>
+</div>
+</div>
+</footer>
+<div class="fixed bottom-0 left-0 w-full overflow-hidden pointer-events-none h-64">
+<div class="absolute -bottom-32 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]"></div>
+</div>
+</body></html>

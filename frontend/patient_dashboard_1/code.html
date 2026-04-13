@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Care-Vault | Clinical Sanctuary Dashboard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#00174b",
+                    "surface-container": "#eceef0",
+                    "background": "#f7f9fb",
+                    "secondary-fixed": "#89f5e7",
+                    "on-surface": "#191c1e",
+                    "surface-tint": "#0053db",
+                    "tertiary-fixed": "#e1e0ff",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "primary-fixed": "#dbe1ff",
+                    "tertiary": "#4648d4",
+                    "on-secondary-container": "#006f66",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#2d3133",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#e0e3e5",
+                    "secondary-container": "#86f2e4",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#0051d5",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#e6e8ea",
+                    "tertiary-container": "#6063ee",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-background": "#191c1e",
+                    "on-primary-container": "#fefcff",
+                    "on-surface-variant": "#414754",
+                    "tertiary-fixed-dim": "#c0c1ff",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "surface-variant": "#e0e3e5",
+                    "on-tertiary-fixed": "#07006c",
+                    "on-secondary-fixed": "#00201d",
+                    "on-primary": "#ffffff",
+                    "surface-container-low": "#f2f4f6",
+                    "inverse-on-surface": "#eff1f3",
+                    "secondary": "#006a61",
+                    "surface": "#f7f9fb",
+                    "outline-variant": "#c1c6d7",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#6bd8cb",
+                    "inverse-primary": "#b4c5ff",
+                    "surface-bright": "#f7f9fb",
+                    "on-tertiary-fixed-variant": "#2f2ebe",
+                    "outline": "#717786",
+                    "surface-dim": "#d8dadc",
+                    "on-tertiary-container": "#fffbff",
+                    "primary-container": "#316bf3",
+                    "on-secondary-fixed-variant": "#005049"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1rem",
+                    "3xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#f7f9fb]/70 dark:bg-slate-900/70 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,81,213,0.06)] flex justify-between items-center px-8 py-4 max-w-full mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined dark:text-blue-400 text-3xl" style="color: #1a2b4b;">clinical_notes</span>
+<h1 class="text-2xl font-black tracking-tighter dark:text-blue-400 font-headline" style="color: #1a2b4b;">Care-Vault</h1>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex gap-8">
+<a class="dark:text-blue-400 font-bold font-headline transition-all hover:bg-blue-50/50 p-2 rounded-lg" href="#" style="color: #1a2b4b;">Dashboard</a>
+<a class="text-slate-500 dark:text-slate-400 font-headline transition-all hover:bg-blue-50/50 p-2 rounded-lg" href="#">Records</a>
+<a class="text-slate-500 dark:text-slate-400 font-headline transition-all hover:bg-blue-50/50 p-2 rounded-lg" href="#">Network</a>
+</nav>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-6 py-2.5 rounded-full font-headline font-bold text-sm tracking-tight scale-95 active:duration-150 active:scale-90 transition-all hover:shadow-lg hover:shadow-primary/20">
+                Connect Wallet
+            </button>
+</div>
+</header>
+<div class="flex pt-20">
+<!-- NavigationDrawer -->
+<aside class="fixed left-0 top-0 h-full hidden lg:flex flex-col p-6 space-y-4 bg-[#f2f4f6] dark:bg-slate-950 h-screen w-72 rounded-r-3xl overflow-hidden pt-24">
+<div class="flex flex-col items-start px-4 mb-8">
+<div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+</div>
+<h3 class="font-headline font-bold text-slate-900 dark:text-white" style="color: #1a2b4b;">Clinical Sanctuary</h3>
+<p class="text-xs text-slate-500 font-mono tracking-tighter">0x71C...4f3b</p>
+</div>
+<nav class="space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-slate-800 dark:text-blue-300 font-semibold rounded-xl shadow-sm transition-transform duration-200" href="#" style="color: #1a2b4b;">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">folder_shared</span>
+<span>Health Records</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">lock_open</span>
+<span>Access Control</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">emergency</span>
+<span>Emergency</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-0 lg:ml-72 p-8 min-h-screen">
+<!-- Welcome Header -->
+<section class="mb-12">
+<div class="max-w-4xl">
+<h2 class="text-4xl font-headline font-extrabold tracking-tight text-on-surface mb-2" style="color: #1a2b4b;">Welcome back, Sanctuary User</h2>
+<p class="text-on-surface-variant flex items-center gap-2 font-medium">
+                        Secure connection active: <span class="text-primary font-mono bg-primary/5 px-2 py-0.5 rounded" style="color: #1a2b4b;">0x71C2A...4f3b</span>
+</p>
+</div>
+</section>
+<!-- Dashboard Grid (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Upload Record Section -->
+<div class="md:col-span-5 flex flex-col gap-8">
+<div class="bg-surface-container-lowest p-8 rounded-3xl shadow-[0_12px_40px_rgba(0,81,213,0.04)] transition-all">
+<div class="flex items-center justify-between mb-8">
+<h3 class="font-headline font-bold text-xl text-on-surface" style="color: #1a2b4b;">Upload Medical Record</h3>
+<span class="material-symbols-outlined text-primary-container" style="color: #1a2b4b;">cloud_upload</span>
+</div>
+<div class="border-2 border-dashed border-outline-variant/30 rounded-2xl p-10 flex flex-col items-center justify-center bg-surface-container-low/50 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-4xl text-outline mb-4 group-hover:scale-110 transition-transform">upload_file</span>
+<p class="text-sm font-medium text-on-surface-variant mb-1">Drag &amp; drop clinical files</p>
+<p class="text-xs text-outline italic">DICOM, PDF, HL7 supported</p>
+</div>
+<div class="mt-8 space-y-4">
+<input class="w-full bg-surface-container-high border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline" placeholder="Record Title (e.g., MRI Lumbar Spine)" type="text"/>
+<button class="w-full bg-primary text-white py-4 rounded-xl font-headline font-bold flex items-center justify-center gap-2 hover:bg-primary-container transition-all active:scale-95 shadow-lg shadow-primary/10">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">lock</span>
+                                Encrypt + Upload
+                            </button>
+</div>
+</div>
+<!-- Access Control Card -->
+<div class="bg-surface-container-low p-8 rounded-3xl transition-all">
+<h3 class="font-headline font-bold text-xl text-on-surface mb-6" style="color: #1a2b4b;">Access Control</h3>
+<div class="space-y-4">
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-lg">medical_services</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl pl-11 pr-4 py-3 text-sm focus:ring-2 focus:ring-primary/20 placeholder:text-outline" placeholder="Provider Public Key (0x...)" type="text"/>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-secondary text-white py-3 rounded-xl font-medium text-sm hover:opacity-90 transition-all active:scale-95">Grant Access</button>
+<button class="flex-1 bg-surface-container-highest text-on-surface-variant py-3 rounded-xl font-medium text-sm hover:bg-error-container hover:text-error transition-all active:scale-95">Revoke All</button>
+</div>
+</div>
+</div>
+</div>
+<!-- My Records Table (Editorial Layout) -->
+<div class="md:col-span-7 space-y-8">
+<div class="bg-surface-container-lowest rounded-3xl p-8 shadow-[0_12px_40px_rgba(0,81,213,0.04)] overflow-hidden">
+<div class="flex items-center justify-between mb-8">
+<h3 class="font-headline font-bold text-xl text-on-surface" style="color: #1a2b4b;">Vault Records</h3>
+<div class="flex gap-2">
+<button class="p-2 rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-lg">filter_list</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-lg">search</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="text-[10px] uppercase tracking-[0.1em] text-outline border-b border-outline-variant/10" style="color: #1a2b4b; opacity: 0.8;">
+<th class="pb-4 font-bold">File Name</th>
+<th class="pb-4 font-bold">IPFS Hash</th>
+<th class="pb-4 font-bold">Date</th>
+<th class="pb-4 font-bold">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center">
+<span class="material-symbols-outlined text-blue-600 text-sm">description</span>
+</div>
+<span class="text-sm font-semibold text-on-surface">lab_results_oct.pdf</span>
+</div>
+</td>
+<td class="py-5 font-mono text-[11px] text-outline">QmXoyp...32Yt</td>
+<td class="py-5 text-xs text-on-surface-variant">Oct 12, 2024</td>
+<td class="py-5">
+<span class="px-2.5 py-1 rounded-full bg-secondary-container/30 text-on-secondary-container text-[10px] font-bold uppercase tracking-wider">Encrypted</span>
+</td>
+</tr>
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-purple-50 flex items-center justify-center">
+<span class="material-symbols-outlined text-purple-600 text-sm">radiology</span>
+</div>
+<span class="text-sm font-semibold text-on-surface">chest_xray_final.dcm</span>
+</div>
+</td>
+<td class="py-5 font-mono text-[11px] text-outline">QmTz82...aR91</td>
+<td class="py-5 text-xs text-on-surface-variant">Sep 28, 2024</td>
+<td class="py-5">
+<span class="px-2.5 py-1 rounded-full bg-primary-container/10 text-primary text-[10px] font-bold uppercase tracking-wider">Sharing</span>
+</td>
+</tr>
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center">
+<span class="material-symbols-outlined text-blue-600 text-sm">description</span>
+</div>
+<span class="text-sm font-semibold text-on-surface">blood_panel_v2.pdf</span>
+</div>
+</td>
+<td class="py-5 font-mono text-[11px] text-outline">QmNf91...88Lx</td>
+<td class="py-5 text-xs text-on-surface-variant">Sep 15, 2024</td>
+<td class="py-5">
+<span class="px-2.5 py-1 rounded-full bg-secondary-container/30 text-on-secondary-container text-[10px] font-bold uppercase tracking-wider">Encrypted</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Activity Logs -->
+<div class="bg-surface-container-lowest rounded-3xl p-8 shadow-[0_12px_40px_rgba(0,81,213,0.04)]">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline font-bold text-xl text-on-surface" style="color: #1a2b4b;">Activity Logs</h3>
+<button class="text-xs font-bold text-primary uppercase tracking-widest hover:underline">View Ledger</button>
+</div>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="w-[2px] bg-secondary-container rounded-full my-1"></div>
+<div>
+<p class="text-sm font-semibold text-on-surface">Access Granted to Dr. Sarah Miller</p>
+<p class="text-xs text-outline">Today, 09:42 AM • Tx: 0x9f...e43</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-[2px] bg-primary-container rounded-full my-1"></div>
+<div>
+<p class="text-sm font-semibold text-on-surface">New Record Encrypted &amp; Stored</p>
+<p class="text-xs text-outline">Yesterday, 04:15 PM • Tx: 0x2a...b91</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-[2px] bg-error-container rounded-full my-1"></div>
+<div>
+<p class="text-sm font-semibold text-on-surface">Access Revoked: General Hospital Admin</p>
+<p class="text-xs text-outline">Oct 11, 2024, 11:20 AM • Tx: 0x81...c32</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="w-full py-12 bg-[#f7f9fb] dark:bg-slate-900 mt-20">
+<div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col items-center md:items-start">
+<span class="font-['Manrope'] font-bold text-slate-400 text-lg mb-2">Care-Vault</span>
+<p class="font-['Inter'] text-xs tracking-wide text-slate-400">© 2024 Care-Vault. Secured by Blockchain.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-['Inter'] text-xs tracking-wide text-slate-400 hover:text-blue-500 transition-colors" href="#">Privacy Protocol</a>
+<a class="font-['Inter'] text-xs tracking-wide text-slate-400 hover:text-blue-500 transition-colors" href="#">Node Status</a>
+<a class="font-['Inter'] text-xs tracking-wide text-slate-400 hover:text-blue-500 transition-colors" href="#">Audit Report</a>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1 bg-green-500/10 rounded-full">
+<div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+<span class="text-[10px] font-bold text-green-600 uppercase tracking-tighter">Network Healthy</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- FAB (Suppressed on Dashboard as per instructions, but available for contextual pages if needed) -->
+</body></html>

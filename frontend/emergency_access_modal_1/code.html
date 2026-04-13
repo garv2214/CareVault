@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Care-Vault | Emergency Access</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#00174b",
+                    "surface-container": "#eceef0",
+                    "background": "#f7f9fb",
+                    "secondary-fixed": "#89f5e7",
+                    "on-surface": "#191c1e",
+                    "surface-tint": "#0053db",
+                    "tertiary-fixed": "#e1e0ff",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "primary-fixed": "#dbe1ff",
+                    "tertiary": "#4648d4",
+                    "on-secondary-container": "#006f66",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#2d3133",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#e0e3e5",
+                    "secondary-container": "#86f2e4",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#0051d5",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#e6e8ea",
+                    "tertiary-container": "#6063ee",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-background": "#191c1e",
+                    "on-primary-container": "#fefcff",
+                    "on-surface-variant": "#414754",
+                    "tertiary-fixed-dim": "#c0c1ff",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "surface-variant": "#e0e3e5",
+                    "on-tertiary-fixed": "#07006c",
+                    "on-secondary-fixed": "#00201d",
+                    "on-primary": "#ffffff",
+                    "surface-container-low": "#f2f4f6",
+                    "inverse-on-surface": "#eff1f3",
+                    "secondary": "#006a61",
+                    "surface": "#f7f9fb",
+                    "outline-variant": "#c1c6d7",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#6bd8cb",
+                    "inverse-primary": "#b4c5ff",
+                    "surface-bright": "#f7f9fb",
+                    "on-tertiary-fixed-variant": "#2f2ebe",
+                    "outline": "#717786",
+                    "surface-dim": "#d8dadc",
+                    "on-tertiary-container": "#fffbff",
+                    "primary-container": "#316bf3",
+                    "on-secondary-fixed-variant": "#005049"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .clinical-blur {
+            backdrop-filter: blur(24px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#f7f9fb]/70 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,81,213,0.06)] flex justify-between items-center px-8 py-4 max-w-full mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-700 dark:text-blue-400" data-icon="clinical_notes">clinical_notes</span>
+<span class="text-2xl font-black tracking-tighter text-blue-700 dark:text-blue-400 font-headline">Care-Vault</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<nav class="flex gap-6 text-slate-500 dark:text-slate-400 font-headline text-sm font-bold">
+<a class="text-blue-700 font-bold" href="#">Dashboard</a>
+<a class="hover:bg-blue-50/50 transition-all px-3 py-1 rounded-lg" href="#">Health Records</a>
+<a class="hover:bg-blue-50/50 transition-all px-3 py-1 rounded-lg" href="#">Access Control</a>
+</nav>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-6 py-2.5 rounded-full font-bold text-sm shadow-sm hover:surface-tint transition-all active:scale-95">
+                Connect Wallet
+            </button>
+</div>
+</header>
+<div class="flex pt-20">
+<!-- NavigationDrawer -->
+<aside class="fixed left-0 top-0 h-full hidden lg:flex flex-col p-6 space-y-4 bg-[#f2f4f6] dark:bg-slate-950 h-screen w-72 rounded-r-3xl overflow-hidden pt-24 z-40">
+<div class="flex flex-col items-start px-4 mb-8">
+<div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-blue-600" data-icon="person">person</span>
+</div>
+<h3 class="font-headline font-bold text-slate-900 dark:text-white">Clinical Sanctuary</h3>
+<p class="text-xs text-slate-500 font-mono">0x71C...4f3b</p>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 p-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 font-['Inter'] text-sm font-medium hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 p-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 font-['Inter'] text-sm font-medium hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="folder_shared">folder_shared</span>
+                    Health Records
+                </a>
+<a class="flex items-center gap-3 p-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 font-['Inter'] text-sm font-medium hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="lock_open">lock_open</span>
+                    Access Control
+                </a>
+<a class="flex items-center gap-3 p-3 bg-white dark:bg-slate-800 text-blue-700 dark:text-blue-300 font-semibold rounded-xl shadow-sm transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="emergency">emergency</span>
+                    Emergency
+                </a>
+<a class="flex items-center gap-3 p-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 font-['Inter'] text-sm font-medium hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                    Settings
+                </a>
+</nav>
+</aside>
+<!-- Main Content (Dashboard Backdrop) -->
+<main class="flex-1 lg:ml-72 p-8 min-h-screen">
+<div class="max-w-6xl mx-auto space-y-8">
+<!-- Dashboard Header -->
+<section class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+<div class="space-y-1">
+<h1 class="text-4xl font-extrabold font-headline tracking-tight text-on-surface">Health Overview</h1>
+<p class="text-on-surface-variant font-medium">Real-time clinical monitoring and decentralized storage.</p>
+</div>
+</section>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Vital Card -->
+<div class="md:col-span-2 bg-surface-container-lowest p-8 rounded-xl shadow-sm space-y-6">
+<div class="flex justify-between items-center">
+<h2 class="font-headline font-bold text-xl">Biometric Stream</h2>
+<span class="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded-full uppercase tracking-wider">Live</span>
+</div>
+<div class="h-48 bg-surface-container-low rounded-lg overflow-hidden relative">
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-on-surface-variant/20 font-headline font-black text-6xl select-none">DATA_PULSE</span>
+</div>
+<img class="w-full h-full object-cover mix-blend-multiply opacity-30" data-alt="abstract digital blue wave pattern representing medical data visualization and heart rate monitoring" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjdU_sE13cf7gYjkBBfiNXkoKvmxdGrzeocNefLkmdx7ndy7gxfYm-xewurUVh5pG1dSuAb9WRSgZoVSDarswzer-JIHsN8UzsTSZxeX4I4PVih_rQn3rUcnrJVlscF1INR5b9v3Z7Lc5HtkXd_Hfmbvy_NPF_eTC8BfXEItF1JzmDtm8NYyjRobwT3COHuLsMsU20jpGNdCrV1EpXkmiIKVI5gvQbP3KsnDkA-YTC-x0r6hyn5T45XPAgKazH9lRjpauaR0i1MMw"/>
+</div>
+</div>
+<!-- Side Stats -->
+<div class="space-y-6">
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm flex items-center gap-4">
+<div class="w-12 h-12 bg-secondary-container rounded-full flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="monitor_heart" data-weight="fill" style="font-variation-settings: 'FILL' 1;">monitor_heart</span>
+</div>
+<div>
+<p class="text-xs font-bold text-on-surface-variant uppercase">Heart Rate</p>
+<p class="text-2xl font-black font-headline">72 BPM</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm flex items-center gap-4">
+<div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-700">
+<span class="material-symbols-outlined" data-icon="opacity" data-weight="fill" style="font-variation-settings: 'FILL' 1;">opacity</span>
+</div>
+<div>
+<p class="text-xs font-bold text-on-surface-variant uppercase">SpO2</p>
+<p class="text-2xl font-black font-headline">98%</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Data Area -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-surface-container-low p-8 rounded-xl space-y-4">
+<h3 class="font-headline font-bold text-lg">Blockchain Audit Log</h3>
+<div class="space-y-3">
+<div class="flex justify-between items-center py-2 border-b border-outline-variant/15">
+<span class="text-sm font-medium">Record Accessed by Node #42</span>
+<span class="text-xs text-on-surface-variant font-mono">2m ago</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-outline-variant/15">
+<span class="text-sm font-medium">Encryption Key Rotated</span>
+<span class="text-xs text-on-surface-variant font-mono">1h ago</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-8 rounded-xl relative overflow-hidden">
+<h3 class="font-headline font-bold text-lg relative z-10">Care Providers</h3>
+<p class="text-sm text-on-surface-variant relative z-10 mb-4">3 authorized practitioners currently have read-access.</p>
+<div class="flex -space-x-3 relative z-10">
+<img class="w-10 h-10 rounded-full border-2 border-white object-cover" data-alt="professional portrait of a male doctor in clinical setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX-QlIreV6Eq73ZnjmoNLNsvfuBsQ9qwQv6EG8W-rbcqdI1E77jY3aU-Rffi7Ls0YA_Ldcp_Drab1ott1mIq62T1RENfE23AOT7h8MvUMSIfzi727ZkXZ7sEby-BVDhnQidGely-7NS24vXGj2zuMkQDfA-MkYfmVugsWRTvRYG9CoxaNaqM7sZaXljwhtL3e1ZU6T3-LoEzBpIdCNrPR0n34i_YWIBdV5tb3JkxiXVagH1rHP7nnCiiDvEwV8sLcfgjbpG0STjAk"/>
+<img class="w-10 h-10 rounded-full border-2 border-white object-cover" data-alt="professional portrait of a female physician with a clinical expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALTcoGvssOvgNqFBr299ojAB8BTjcUwnGPVWHURY_fnGbckj4fIrsEXOmIBQlVHx76zjBy06ea1hZMp-i_0lIOCq0tCHnjwPHV2a-tnGlPWwfZfaj2tKkcnjp4cyhJGaO5gBl17yxRzSh5NZndAt0gl_ciFrDvMGWGxvL5KgFC4WELu5Si6X6wC9ATjQWC9hC6jxOcyvkyCxWYn_8bh07Jrkxe9fgcIcC5LwrAluGhd8lvO9pbaqFZboss96SJ51f13eMFycxaACk"/>
+<div class="w-10 h-10 rounded-full bg-blue-600 border-2 border-white flex items-center justify-center text-[10px] font-bold text-white">+1</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- EMERGENCY ACCESS MODAL OVERLAY -->
+<div class="fixed inset-0 z-[60] flex items-center justify-center p-6 sm:p-0">
+<!-- Backdrop -->
+<div class="absolute inset-0 bg-slate-900/40 backdrop-blur-md"></div>
+<!-- Modal Card -->
+<div class="relative w-full max-w-lg bg-surface-container-lowest rounded-[2rem] shadow-[0_32px_64px_-12px_rgba(0,81,213,0.15)] overflow-hidden">
+<!-- Warning Header -->
+<div class="bg-error-container p-8 flex items-start gap-4">
+<div class="w-14 h-14 rounded-2xl bg-error flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="emergency_home">emergency_home</span>
+</div>
+<div class="space-y-1">
+<h2 class="text-2xl font-black font-headline text-on-error-container tracking-tight">Initiate Emergency Access?</h2>
+<p class="text-on-error-container/80 text-sm font-semibold uppercase tracking-widest leading-none">Level 1 Protocol Activated</p>
+</div>
+</div>
+<!-- Modal Content -->
+<div class="p-8 space-y-6">
+<div class="space-y-4">
+<p class="text-on-surface font-medium leading-relaxed">
+                        You are about to bypass standard verification protocols for immediate data retrieval. This action is reserved for life-critical situations only.
+                    </p>
+<!-- Compliance Notice -->
+<div class="bg-surface-container p-4 rounded-xl flex items-start gap-3 border-l-4 border-primary">
+<span class="material-symbols-outlined text-primary mt-0.5" data-icon="verified_user">verified_user</span>
+<p class="text-sm font-bold text-primary leading-tight">
+                            Emergency access will be logged on blockchain with an immutable cryptographic timestamp.
+                        </p>
+</div>
+<div class="text-xs text-on-surface-variant/70 italic bg-surface-container-low p-3 rounded-lg">
+                        Audit Hash: 0xf7a9...e32c will be generated upon confirmation and broadcasted to the medical node network.
+                    </div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col sm:flex-row gap-3 pt-2">
+<button class="flex-1 order-2 sm:order-1 py-4 px-6 rounded-2xl font-bold text-on-surface-variant hover:bg-surface-container transition-all active:scale-95">
+                        Cancel
+                    </button>
+<button class="flex-1 order-1 sm:order-2 py-4 px-6 rounded-2xl bg-error text-white font-black font-headline shadow-lg shadow-error/20 hover:opacity-90 transition-all active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-xl" data-icon="lock_open">lock_open</span>
+                        Confirm Access
+                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-[#f7f9fb] dark:bg-slate-900 w-full py-12">
+<div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="space-y-2 text-center md:text-left">
+<p class="font-['Manrope'] font-bold text-slate-400">Care-Vault</p>
+<p class="font-['Inter'] text-xs tracking-wide text-slate-400">© 2024 Care-Vault. Secured by Blockchain.</p>
+</div>
+<nav class="flex gap-8">
+<a class="text-slate-400 hover:text-blue-500 font-['Inter'] text-xs tracking-wide transition-colors" href="#">Privacy Protocol</a>
+<a class="text-slate-400 hover:text-blue-500 font-['Inter'] text-xs tracking-wide transition-colors" href="#">Node Status</a>
+<a class="text-slate-400 hover:text-blue-500 font-['Inter'] text-xs tracking-wide transition-colors" href="#">Audit Report</a>
+</nav>
+</div>
+</footer>
+</body></html>

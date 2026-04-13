@@ -61,4 +61,6 @@ async function checkAccess(patientId, addr) {
   return await contract.hasAccess(patientId, addr);
 }
 
-module.exports = { init, addHealthRecord, getPatientRecordIds, checkAccess };
+module.exports = { init, addHealthRecord, getPatientRecordIds, checkAccess, contract };
+
+module.exports.CONTRACT_ABI = CONTRACT_ABI;

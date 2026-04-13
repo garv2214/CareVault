@@ -4,7 +4,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 
-const healthRoutes = require("./routes/healthRoutes");
+const healthRoutes = require("./routes/healthroutes");
 const blockchainClient = require("./blockchainClient");
 const ipfsClient = require("./ipfsClient");
 const aiRoutes = require("./routes/aiRoutes");
@@ -19,7 +19,17 @@ app.use(bodyParser.json());
 // Routes
 app.get("/", (req, res) => res.send("CareVault Backend Running 🚀"));
 app.use("/api/health", healthRoutes);
-app.use("/api/ai", aiRoutes);      // <-- moved **after app is defined**
+app.use("/api/ai", aiRoutes);
+
+// Serve ABI for frontend
+app.get("/api/abi", async (req, res) => {
+  try {
+    await blockchainClient.init();
+    res.json(blockchainClient.contract ? blockchainClient.contract.interface.abi : []);
+  } catch (e) {
+    res.json({ error: 'Blockchain not ready', abi: [] });
+  }
+});
 
 const PORT = process.env.PORT || 5000;
 

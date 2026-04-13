@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# Care-Vault Frontend - Static HTML Demos
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🚀 Quick Start
 
-## Available Scripts
+### View Demos
+- Open `index.html` in browser for landing page with all demos
+- Direct links:
+  - Authentication: `authentication_1/code.html`, `authentication_2/code.html`
+  - Doctor Dashboards: `doctor_dashboard_1/code.html`, `doctor_dashboard_2/code.html`
+  - Patient Dashboards: `patient_dashboard_1/code.html`, `patient_dashboard_2/code.html`
+  - Emergency: `emergency_access_modal_1/code.html`, `emergency_access_modal_2/code.html`
 
-In the project directory, you can run:
+### Serve Locally
+```bash
+npx serve .
+```
 
-### `npm start`
+### Deploy
+- Vercel: `vercel --prod`
+- Netlify: Drag `frontend/` folder
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📁 Structure
+```
+frontend/
+├── index.html              # Demo landing page
+├── authentication_*/
+├── doctor_dashboard_*/
+├── patient_dashboard_*/
+├── emergency_access_modal_*/
+├── ethercare_minimal_*/    # Design docs
+└── landing_page/           # Assets
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🔮 Next Steps
+1. Integrate ethers.js & wallet connect (add CDNs/scripts to HTML)
+2. Connect to backend API & blockchain contracts
+3. Convert to React SPA using these designs as templates
+4. Add dark mode toggle, responsive enhancements
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Credits
+- UI Prototypes from stitch_care_vault_web_frontend
+- Tailwind CSS, Material Symbols

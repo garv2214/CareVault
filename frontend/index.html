@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Care-Vault - Frontend Demos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen py-12 px-4">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <header class="text-center mb-16">
+            <div class="flex items-center justify-center gap-3 mb-8">
+                <span class="material-symbols-outlined text-blue-700 text-4xl">clinical_notes</span>
+                <h1 class="text-5xl font-black tracking-tight text-gray-900">Care-Vault</h1>
+            </div>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">Decentralized Health Records - Frontend UI Demos</p>
+        </header>
+
+        <!-- Demos Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Authentication -->
+            <div class="group">
+                <a href="authentication_1/code.html" class="block p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-2 border-white hover:border-blue-200">
+                    <img src="authentication_1/screen.png" alt="Auth 1" class="w-full h-48 object-cover rounded-xl mb-4">
+                    <h3 class="font-bold text-xl mb-2 text-gray-900">Authentication v1</h3>
+                    <p class="text-gray-600">Secure wallet connection and portal selection.</p>
+                </a>
+            </div>
+            <div class="group">
+                <a href="authentication_2/code.html" class="block p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-2 border-white hover:border-blue-200">
+                    <img src="authentication_2/screen.png" alt="Auth 2" class="w-full h-48 object-cover rounded-xl mb-4">
+                    <h3 class="font-bold text-xl mb-2 text-gray-900">Authentication v2</h3>
+                    <p class="text-gray-600">Alternate auth flow with enhanced visuals.</p>
+                </a>
+            </div>
+
+            <!-- Doctor Dashboard -->
+            <div class="group">
+                <a href="doctor_dashboard_1/code.html" class="block p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-2 border-white hover:border-green-200">
+                    <img src="doctor_dashboard_1/screen.png" alt="Doctor 1" class="w-full h-48 object-cover rounded-xl mb-4">
+                    <h3 class="font-bold text-xl mb-2 text-gray-900">Doctor Dashboard v1</h3>
+                    <p class="text-gray-600">Full dashboard with access requests and records table.</p>
+                </a>
+            </div>
+            <div class="group">
+                <a href="doctor_dashboard_2/code.html" class="block p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-2 border-white hover:border-green-200">
+                    <img src="doctor_dashboard_2/screen.png" alt="Doctor 2" class="w-full h-48 object-cover rounded-xl mb-4">
+                    <h3 class="font-bold text-xl mb-2 text-gray-900">Doctor Dashboard v2</h3>
+                    <p class="text-gray-600">Alternate doctor interface design.</p>
+                </a>
+            </div>
+
+            <!-- Patient Dashboard -->
+            <div class="group">
+                <a href="patient_dashboard_1/code.html" class="block p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-2 border-white hover:border-purple-200">
+                    <img src="patient_dashboard_1/screen.png" alt="Patient 1" class="w-full h-48 object-cover rounded-xl mb-4">
+                    <h3 class="font-bold text-xl mb-2 text-gray-900">Patient Dashboard v1</h3>
+                    <p class="text-gray-600">Patient health records management.</p>
+                </a>
+            </div>
+            <div class="group">
+                <a href="patient_dashboard_2/code.html" class="block p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-2 border-white hover:border-purple-200">
+                    <img src="patient_dashboard_2/screen.png" alt="Patient 2" class="w-full h-48 object-cover rounded-xl mb-4">
+                    <h3 class="font-bold text-xl mb-2 text-gray-900">Patient Dashboard v2</h3>
+                    <p class="text-gray-600">Enhanced patient portal.</p>
+                </a>
+            </div>
+
+            <!-- Emergency Access -->
+            <div class="group">
+                <a href="emergency_access_modal_1/code.html" class="block p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-2 border-white hover:border-red-200">
+                    <img src="emergency_access_modal_1/screen.png" alt="Emergency 1" class="w-full h-48 object-cover rounded-xl mb-4">
+                    <h3 class="font-bold text-xl mb-2 text-gray-900">Emergency Access v1</h3>
+                    <p class="text-gray-600">'Break glass' emergency protocol UI.</p>
+                </a>
+            </div>
+            <div class="group">
+                <a href="emergency_access_modal_2/code.html" class="block p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-2 border-white hover:border-red-200">
+                    <img src="emergency_access_modal_2/screen.png" alt="Emergency 2" class="w-full h-48 object-cover rounded-xl mb-4">
+                    <h3 class="font-bold text-xl mb-2 text-gray-900">Emergency Access v2</h3>
+                    <p class="text-gray-600">Alternate emergency modal design.</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-20 text-center text-gray-500 text-sm">
+            <p>Static HTML prototypes • Ready for blockchain integration</p>
+        </footer>
+    </div>
+</body>
+</html>
