@@ -1,34 +1,33 @@
-// frontend/src/components/EmergencyAccess.jsx
 import React, { useState } from "react";
 import { api } from "../services/api";
 
-export default function EmergencyAccess({ wallet, contract }) {
-  const [patientId, setPatientId] = useState("");
-  const [reason, setReason] = useState("");
+export default function EmergencyAccess({ user, wallet, emergencyTriggered }) {
+  const [patientId, setPatientId] = useState(user?.patientId || "");
+  const [reason, setReason] = useState(emergencyTriggered ? "SOS button activated by patient" : "");
   const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(false);
+  const contract = wallet?.contract;
 
   async function handleEmergencyAccess() {
-    if (!contract || !patientId || !reason || !wallet?.account) {
-      alert("Please fill all fields and connect wallet");
+    if (!patientId || !reason) {
+      alert("Please fill patient ID and reason");
       return;
     }
-
     setLoading(true);
     try {
-      // Call emergency access on blockchain
-      const tx = await contract.emergencyAccess(patientId, reason);
-      await tx.wait();
-
-      // Fetch emergency summary from backend
-      const response = await api.getEmergencySummary(patientId);
-      if (response.success) {
-        setSummary(response.summary);
-      } else {
-        alert("Error fetching summary: " + response.message);
+      if (contract && wallet?.account) {
+        try {
+          const tx = await contract.emergencyAccess(patientId, reason);
+          await tx.wait();
+        } catch (err) {
+          console.warn("On-chain emergency access:", err.message);
+        }
       }
+
+      await api.triggerEmergency({ patientId, reason, location: "Emergency access screen" });
+      const response = await api.getEmergencySummary(patientId);
+      if (response.success) setSummary(response.summary);
     } catch (err) {
-      console.error("Emergency access error:", err);
       alert("Error: " + err.message);
     } finally {
       setLoading(false);
@@ -41,35 +40,23 @@ export default function EmergencyAccess({ wallet, contract }) {
         <h2>🚨 Emergency Access</h2>
       </div>
 
+      {emergencyTriggered && (
+        <div className="emergency-alert-banner">
+          Emergency alert has been triggered. Contacts and ambulance service have been notified.
+        </div>
+      )}
+
       <div className="emergency-form">
         <div className="form-group">
           <label>Patient ID</label>
-          <input
-            type="text"
-            value={patientId}
-            onChange={(e) => setPatientId(e.target.value)}
-            placeholder="Enter patient ID"
-            required
-          />
+          <input value={patientId} onChange={(e) => setPatientId(e.target.value)} placeholder="Patient ID" required />
         </div>
-
         <div className="form-group">
           <label>Emergency Reason</label>
-          <textarea
-            value={reason}
-            onChange={(e) => setReason(e.target.value)}
-            placeholder="e.g., Patient unconscious, trauma, cardiac arrest"
-            rows="3"
-            required
-          />
+          <textarea value={reason} onChange={(e) => setReason(e.target.value)} placeholder="e.g., Patient unconscious, cardiac arrest" rows="3" required />
         </div>
-
-        <button
-          onClick={handleEmergencyAccess}
-          disabled={loading || !patientId || !reason}
-          className="btn-emergency"
-        >
-          {loading ? "Accessing..." : "Access Emergency Summary"}
+        <button onClick={handleEmergencyAccess} disabled={loading || !patientId || !reason} className="btn-emergency">
+          {loading ? "Accessing..." : "🚨 Trigger Emergency Access"}
         </button>
       </div>
 
@@ -77,15 +64,24 @@ export default function EmergencyAccess({ wallet, contract }) {
         <div className="emergency-summary">
           <h3>Emergency Summary</h3>
           <div className="summary-content">
-            <p><strong>Patient ID:</strong> {summary.patientId}</p>
-            <p><strong>IPFS CID:</strong> {summary.ipfsCid}</p>
-            <div className="summary-data">
-              <h4>Quick Summary:</h4>
-              <p>{summary.quickSummary || "No summary available"}</p>
-            </div>
+            <p><strong>Patient:</strong> {summary.patientId}</p>
+            <p><strong>Status:</strong> {summary.quickSummary}</p>
+            {summary.aiAssessment && (
+              <div className="summary-data">
+                <h4>AI Assessment</h4>
+                <p>Prediction: <strong>{summary.aiAssessment.prediction}</strong></p>
+                <p>Risk Level: {summary.aiAssessment.risk_level}</p>
+              </div>
+            )}
+            {summary.emergencyContacts?.length > 0 && (
+              <div className="summary-data">
+                <h4>Notified Contacts</h4>
+                {summary.emergencyContacts.map((c) => <p key={c.id}>{c.name}: {c.phone}</p>)}
+              </div>
+            )}
             {summary.decryptedSample && (
               <div className="summary-data">
-                <h4>Record Data:</h4>
+                <h4>Latest Vitals</h4>
                 <pre>{JSON.stringify(summary.decryptedSample, null, 2)}</pre>
               </div>
             )}
@@ -95,4 +91,3 @@ export default function EmergencyAccess({ wallet, contract }) {
     </div>
   );
 }
-

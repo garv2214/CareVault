@@ -1,16 +1,18 @@
 const express = require("express");
 const router = express.Router();
-
-// Controller functions
 const {
-  getAllRecords,
-  addRecord,
-  getEmergencySummary,
+  getAllRecords, addRecord, getEmergencySummary, triggerEmergency,
+  addEmergencyContact, getEmergencyContacts, grantAccessOnChain, getAuditLog,
 } = require("../controllers/healthController");
+const { authMiddleware, optionalAuth } = require("../middleware/auth");
 
-// Routes
-router.get("/", getAllRecords);
-router.post("/", addRecord);
-router.get("/emergency/:patientId", getEmergencySummary);
+router.get("/", optionalAuth, getAllRecords);
+router.post("/", optionalAuth, addRecord);
+router.get("/emergency/:patientId", authMiddleware, getEmergencySummary);
+router.post("/emergency/trigger", authMiddleware, triggerEmergency);
+router.post("/emergency-contacts", authMiddleware, addEmergencyContact);
+router.get("/emergency-contacts/:patientId", authMiddleware, getEmergencyContacts);
+router.post("/grant-access", authMiddleware, grantAccessOnChain);
+router.get("/audit/:patientId", authMiddleware, getAuditLog);
 
 module.exports = router;

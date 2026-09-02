@@ -54,6 +54,8 @@ async function addRecord(patientId, recordData) {
     const response = await axios.post(`${API_URL}/health`, {
       patientId,
       recordData
+    }, {
+      headers: { "Content-Type": "application/json" }
     });
     return response.data;
   } catch (error) {

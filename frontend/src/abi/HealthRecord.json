@@ -1,233 +1,32 @@
 {
   "abi": [
-    {
-      "inputs": [],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "string",
-          "name": "patientId",
-          "type": "string"
-        },
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "grantee",
-          "type": "address"
-        }
-      ],
-      "name": "AccessGranted",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "string",
-          "name": "patientId",
-          "type": "string"
-        },
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "grantee",
-          "type": "address"
-        }
-      ],
-      "name": "AccessRevoked",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "string",
-          "name": "patientId",
-          "type": "string"
-        },
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "accessor",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "string",
-          "name": "reason",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "timestamp",
-          "type": "uint256"
-        }
-      ],
-      "name": "EmergencyAccessed",
-      "type": "event"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_patientId",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "_ipfsHash",
-          "type": "string"
-        }
-      ],
-      "name": "addRecord",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_patientId",
-          "type": "string"
-        },
-        {
-          "internalType": "address",
-          "name": "_grantee",
-          "type": "address"
-        }
-      ],
-      "name": "grantAccess",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_patientId",
-          "type": "string"
-        },
-        {
-          "internalType": "address",
-          "name": "_grantee",
-          "type": "address"
-        }
-      ],
-      "name": "revokeAccess",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_patientId",
-          "type": "string"
-        },
-        {
-          "internalType": "address",
-          "name": "_addr",
-          "type": "address"
-        }
-      ],
-      "name": "hasAccess",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_patientId",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "_reason",
-          "type": "string"
-        }
-      ],
-      "name": "emergencyAccess",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_patientId",
-          "type": "string"
-        }
-      ],
-      "name": "getRecordIdsForPatient",
-      "outputs": [
-        {
-          "internalType": "uint256[]",
-          "name": "",
-          "type": "uint256[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_id",
-          "type": "uint256"
-        }
-      ],
-      "name": "getRecordById",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        },
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        },
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    }
+    {"inputs":[],"stateMutability":"nonpayable","type":"constructor"},
+    {"anonymous":false,"inputs":[{"indexed":true,"internalType":"string","name":"patientId","type":"string"},{"indexed":true,"internalType":"address","name":"grantee","type":"address"},{"indexed":false,"internalType":"uint256","name":"expiresAt","type":"uint256"}],"name":"AccessGranted","type":"event"},
+    {"anonymous":false,"inputs":[{"indexed":true,"internalType":"string","name":"patientId","type":"string"},{"indexed":true,"internalType":"address","name":"grantee","type":"address"}],"name":"AccessRevoked","type":"event"},
+    {"anonymous":false,"inputs":[{"indexed":true,"internalType":"string","name":"patientId","type":"string"},{"indexed":true,"internalType":"address","name":"accessor","type":"address"},{"indexed":false,"internalType":"string","name":"reason","type":"string"},{"indexed":false,"internalType":"uint256","name":"timestamp","type":"uint256"}],"name":"BreakGlassAccess","type":"event"},
+    {"anonymous":false,"inputs":[{"indexed":true,"internalType":"string","name":"patientId","type":"string"},{"indexed":true,"internalType":"address","name":"responder","type":"address"}],"name":"EmergencyAuthorized","type":"event"},
+    {"anonymous":false,"inputs":[{"indexed":true,"internalType":"string","name":"patientId","type":"string"},{"indexed":true,"internalType":"address","name":"accessor","type":"address"},{"indexed":false,"internalType":"string","name":"reason","type":"string"},{"indexed":false,"internalType":"uint256","name":"timestamp","type":"uint256"}],"name":"EmergencyAccessed","type":"event"},
+    {"anonymous":false,"inputs":[{"indexed":true,"internalType":"string","name":"patientId","type":"string"}],"name":"EmergencyTokenSet","type":"event"},
+    {"anonymous":false,"inputs":[{"indexed":true,"internalType":"string","name":"patientId","type":"string"},{"indexed":true,"internalType":"address","name":"owner","type":"address"}],"name":"PatientRegistered","type":"event"},
+    {"anonymous":false,"inputs":[{"indexed":true,"internalType":"uint256","name":"id","type":"uint256"},{"indexed":false,"internalType":"string","name":"patientId","type":"string"},{"indexed":false,"internalType":"string","name":"ipfsHash","type":"string"},{"indexed":false,"internalType":"string","name":"contentHash","type":"string"},{"indexed":true,"internalType":"address","name":"uploader","type":"address"}],"name":"RecordAdded","type":"event"},
+    {"inputs":[],"name":"admin","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},
+    {"inputs":[{"internalType":"string","name":"_patientId","type":"string"},{"internalType":"string","name":"_ipfsHash","type":"string"},{"internalType":"string","name":"_contentHash","type":"string"}],"name":"addRecord","outputs":[],"stateMutability":"nonpayable","type":"function"},
+    {"inputs":[{"internalType":"string","name":"_patientId","type":"string"},{"internalType":"address","name":"_responder","type":"address"}],"name":"authorizeEmergency","outputs":[],"stateMutability":"nonpayable","type":"function"},
+    {"inputs":[{"internalType":"string","name":"_patientId","type":"string"},{"internalType":"string","name":"_hashedToken","type":"string"},{"internalType":"string","name":"_reason","type":"string"}],"name":"breakGlassAccess","outputs":[],"stateMutability":"nonpayable","type":"function"},
+    {"inputs":[{"internalType":"string","name":"_patientId","type":"string"},{"internalType":"address","name":"_responder","type":"address"}],"name":"deauthorizeEmergency","outputs":[],"stateMutability":"nonpayable","type":"function"},
+    {"inputs":[{"internalType":"string","name":"_patientId","type":"string"},{"internalType":"string","name":"_reason","type":"string"}],"name":"emergencyAccess","outputs":[],"stateMutability":"nonpayable","type":"function"},
+    {"inputs":[{"internalType":"string","name":"_patientId","type":"string"},{"internalType":"address","name":"_grantee","type":"address"},{"internalType":"uint256","name":"_expiresAt","type":"uint256"}],"name":"grantAccess","outputs":[],"stateMutability":"nonpayable","type":"function"},
+    {"inputs":[{"internalType":"uint256","name":"_id","type":"uint256"}],"name":"getAuditEntry","outputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"string","name":"","type":"string"},{"internalType":"address","name":"","type":"address"},{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"},{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},
+    {"inputs":[],"name":"getAuditLogCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},
+    {"inputs":[{"internalType":"string","name":"_patientId","type":"string"}],"name":"getPatientOwner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},
+    {"inputs":[],"name":"getRecordCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},
+    {"inputs":[{"internalType":"uint256","name":"_id","type":"uint256"}],"name":"getRecordById","outputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"},{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},
+    {"inputs":[{"internalType":"string","name":"_patientId","type":"string"}],"name":"getRecordIdsForPatient","outputs":[{"internalType":"uint256[]","name":"","type":"uint256[]"}],"stateMutability":"view","type":"function"},
+    {"inputs":[{"internalType":"string","name":"_patientId","type":"string"},{"internalType":"address","name":"_addr","type":"address"}],"name":"hasAccess","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},
+    {"inputs":[{"internalType":"string","name":"_patientId","type":"string"},{"internalType":"address","name":"_addr","type":"address"}],"name":"isEmergencyAuthorized","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},
+    {"inputs":[{"internalType":"string","name":"","type":"string"}],"name":"patientOwners","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},
+    {"inputs":[{"internalType":"string","name":"_patientId","type":"string"}],"name":"registerPatient","outputs":[],"stateMutability":"nonpayable","type":"function"},
+    {"inputs":[{"internalType":"string","name":"_patientId","type":"string"},{"internalType":"address","name":"_grantee","type":"address"}],"name":"revokeAccess","outputs":[],"stateMutability":"nonpayable","type":"function"},
+    {"inputs":[{"internalType":"string","name":"_patientId","type":"string"},{"internalType":"string","name":"_hashedToken","type":"string"}],"name":"setEmergencyToken","outputs":[],"stateMutability":"nonpayable","type":"function"}
   ]
 }
-

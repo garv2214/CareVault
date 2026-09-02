@@ -1,21 +1,19 @@
-// backend/utils/encrypt.js
 const crypto = require("crypto");
 require("dotenv").config();
 
-// AES-256-CBC encryption. AES_SECRET_KEY must be 32 bytes (characters)
 const ALGORITHM = "aes-256-cbc";
-const KEY = process.env.AES_SECRET_KEY || "01234567890123456789012345678901"; // fallback (32 chars) - replace!
-if (KEY.length !== 32) {
-  console.warn("⚠️ AES_SECRET_KEY should be 32 characters for AES-256. Current length:", KEY.length);
+const KEY_RAW = process.env.AES_SECRET_KEY || "01234567890123456789012345678901";
+if (!process.env.AES_SECRET_KEY && process.env.NODE_ENV === "production") {
+  throw new Error("CRITICAL: AES_SECRET_KEY environment variable is required in production!");
 }
+// Normalize key to 32 bytes using sha256 if needed
+const KEY = crypto.createHash("sha256").update(KEY_RAW).digest();
 
 function encrypt(text) {
-  // iv should be 16 bytes
   const iv = crypto.randomBytes(16);
   const cipher = crypto.createCipheriv(ALGORITHM, Buffer.from(KEY), iv);
   let encrypted = cipher.update(typeof text === "string" ? text : JSON.stringify(text), "utf8", "hex");
   encrypted += cipher.final("hex");
-  // return iv + encrypted (hex encoded)
   return iv.toString("hex") + ":" + encrypted;
 }
 
@@ -27,9 +25,17 @@ function decrypt(payload) {
   dec += decipher.final("utf8");
   try {
     return JSON.parse(dec);
-  } catch (e) {
+  } catch {
     return dec;
   }
 }
 
-module.exports = { encrypt, decrypt };
+function contentHash(data) {
+  return crypto.createHash("sha256").update(typeof data === "string" ? data : JSON.stringify(data)).digest("hex");
+}
+
+function hashEmergencyToken(token) {
+  return crypto.createHash("sha256").update(token).digest("hex");
+}
+
+module.exports = { encrypt, decrypt, contentHash, hashEmergencyToken };
